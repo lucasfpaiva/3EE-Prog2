@@ -1,3 +1,4 @@
+# projeto 2 unidade Programação 2 Bacharelado em Engenharia Elétrica
 class Pessoa:
     def __init__(self, nome, idade):
         self.__nome
