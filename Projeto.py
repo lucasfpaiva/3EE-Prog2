@@ -1,24 +1,57 @@
 # projeto 2 unidade Programação 2 Bacharelado em Engenharia Elétrica
 class Pessoa:
     def __init__(self, nome, idade):
-        self.__nome
+        self.__nome = nome
+        self.__idade = idade
+
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, valor):
+        self.__nome = valor
+
+    @property
+    def idade(self):
+        return self.__idade
+
+    @idade.setter
+    def idade(self, valor):
+        self.__idade = valor
 
 
 class Piloto(Pessoa):
     def __init__(self, nome, idade, prof):
         super().__init__(nome, idade)
-        self.proficiencia = prof
+        self.__proficiencia = float(prof)
+
+    @property
+    def proficiencia(self):
+        return float(self.__proficiencia)
+
+    @proficiencia.setter
+    def proficiencia(self, valor):
+        self.__proficiencia = float(valor)
 
 
 class Veiculo:
-    def __init__(self, on, vel, marca, modelo, aceleracao, peso, velocMax) -> None:
+    def __init__(self, on, vel, marca, modelo, aceleracao, velocMax, pil: Piloto) -> None:
         self.__on = on
-        self.__veloc = vel
+        self.__veloc = float(vel)
         self.__marca = marca
         self.__modelo = modelo
-        self.__aceleracao = aceleracao
-        self.__peso = peso
+        self.__aceleracao = float(aceleracao)
         self.__velocMax = velocMax
+        self.__piloto = pil
+
+    @property
+    def piloto(self):
+        return self.__piloto
+
+    @piloto.setter
+    def piloto(self, valor):
+        self.__piloto = valor
 
     @property
     def on(self):
@@ -30,7 +63,7 @@ class Veiculo:
 
     @property
     def veloc(self):
-        return self.__veloc
+        return float(self.__veloc)
 
     @veloc.setter
     def veloc(self, valor):
@@ -64,16 +97,8 @@ class Veiculo:
         self.__aceleracao = valor
 
     @property
-    def peso(self):
-        return self.__peso
-
-    @peso.setter
-    def peso(self, valor):
-        self.__peso = valor
-
-    @property
     def velocMax(self):
-        return self.__velocMax
+        return float(self.__velocMax)
 
     @velocMax.setter
     def velocMax(self, valor):
@@ -83,7 +108,8 @@ class Veiculo:
         self.__on = True
 
     def acelerar(self):
-        self.veloc += self.aceleracao
+        self.veloc += self.aceleracao*self.piloto.proficiencia
+
         if self.veloc > self.velocMax:
             self.veloc = self.velocMax
 
@@ -91,14 +117,13 @@ class Veiculo:
         if self.veloc < 0:
             self.veloc = 0
         else:
-            self.veloc -= 5
+            self.veloc -= self.aceleracao*10
 
 
 class Carro(Veiculo):
-    def __init__(self, on, veloc, marca, modelo, aceleracao, peso, velocMax, tpDirecao, pil: Piloto) -> None:
-        super().__init__(on, veloc, marca, modelo, aceleracao, peso, velocMax)
+    def __init__(self, on, vel, marca, modelo, aceleracao, velocMax, pil: Piloto, tpDirecao) -> None:
+        super().__init__(on, vel, marca, modelo, aceleracao, velocMax, pil)
         self.__tpDirecao = tpDirecao
-        self.piloto = pil
 
     @property
     def tpDirecao(self):
@@ -109,7 +134,7 @@ class Carro(Veiculo):
         self.__tpDirecao = valor
 
     def acelerar(self):
-        return super().acelerar() * self.piloto.proficiencia
+        return super().acelerar()
 
 
 class Moto(Veiculo):
@@ -127,15 +152,29 @@ class Moto(Veiculo):
 
 
 # ----------------------------------
+pil1 = Piloto('Jose', 21, 1)
+pil2 = Piloto('Joaquim', 35, 1)
+pil3 = Piloto('Henrique', 32, 1)
 carros = []
-carros.append(Carro(0, 0, 'Porsche', '1954', 10, 1500, 55, 'Hidráulica'))
-carros.append(Carro(0, 0, 'McLaren', '2001', 7, 2500, 60, 'Hidráulica'))
-carros.append(Carro(0, 0, 'Mustang', '1900', 15, 1700, 56, 'Hidráulica'))
+carros.append(Carro(0, 0, 'Porsche', '1954', 10, 55, pil1, 'Hidráulica'))
+carros.append(Carro(0, 0, 'McLaren', '2001', 10, 50, pil2, 'Hidráulica'))
+carros.append(Carro(0, 0, 'Mustang', '1900', 10, 50, pil3, 'Hidráulica'))
 # -----------------------------------
 
+carroVencedor = ''
+menor_Tempo = 0
+contador = 0
 for carroAtual in carros:
     distPercorrida = 0
-    carroVencedor = ''
+    contador = 0
     while distPercorrida < 1000:
-        carroAtual.acelerar(0.95)
+        contador += 1
+        carroAtual.acelerar()
         distPercorrida += carroAtual.veloc
+    if menor_Tempo == 0:
+        menor_Tempo = contador
+    elif contador < menor_Tempo:
+        menor_Tempo = contador
+        carroVencedor = f'{carroAtual.marca} {carroAtual.modelo}'
+
+print(f'O carro vencedor foi: {carroVencedor}')
