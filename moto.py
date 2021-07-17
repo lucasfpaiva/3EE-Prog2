@@ -1,8 +1,9 @@
 from veiculo import Veiculo
+from piloto import Piloto
 
 
 class Moto(Veiculo):
-    def __init__(self, on, veloc, marca, modelo, aceleracao, peso, velocMax, tpGuidao) -> None:
+    def __init__(self, on, veloc, marca, modelo, aceleracao, peso, velocMax, pil: Piloto, tpGuidao) -> None:
         super().__init__(on, veloc, marca, modelo, aceleracao, peso, velocMax)
         self.__tpGuidao = tpGuidao
 

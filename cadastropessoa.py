@@ -10,19 +10,22 @@ class CadastroPessoa(Pessoa):
     def incluir():
         nome = input('Nome: ')
         idade = int(input('Idade: '))
-        pessoas.append(CadastroPessoa(nome, idade))
-        return pessoas
+        p = CadastroPessoa(nome, idade)
+        return p
 
     def remover(nome):
+        status = False
         if len(pessoas) == 0:
             print('Não há registros em Pessoas.')
         else:
             for idx, pessoa in enumerate(pessoas):
                 if str(nome) == str(pessoa.nome):
                     del(pessoas[idx])
-                    print(f'Registro {nome} removido.')
+                    print(f'Pessoa {nome} removida.')
+                    status = True
                 else:
-                    print(f'Registro {nome} não encontrada.')
+                    print(f'Pessoa {nome} não encontrada.')
+        return status
 
     def consultar(nome):
         if len(pessoas) == 0:
@@ -31,6 +34,7 @@ class CadastroPessoa(Pessoa):
             for pessoa in pessoas:
                 if str(nome) == str(pessoa.nome):
                     print(f'{nome} se encontra nos registros.')
+                    return pessoa
                 else:
                     print(f'{nome} não consta nos registros.')
 
@@ -50,18 +54,3 @@ class CadastroPessoa(Pessoa):
     def listar():
         for pessoa in pessoas:
             print(f'Nome: {pessoa.nome.title()} Idade: {pessoa.idade}')
-
-
-def main():
-    p1 = CadastroPessoa.incluir()
-    CadastroPessoa.listar()
-
-    CadastroPessoa.atualizar('sergio')
-
-    CadastroPessoa.remover('sergio')
-    # CadastroPessoa.listar()
-    CadastroPessoa.listar()
-
-
-if __name__ == '__main__':
-    main()
