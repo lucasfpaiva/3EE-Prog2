@@ -1,3 +1,19 @@
+# -*- coding: utf-8 -*-
+
+
+"""Programa Simulação de Corridas
+
+Este programa simula a corrida de carros ou motos, com módulos para inserir,
+excluir, consultar e atualizar dados sobre Carros, Motos e Pilotos, com o
+objetivo de simular comportamento pertencente ao tema Mecânica, da disciplina Mecânica e Resistência de Materiais.
+"""
+
+from __future__ import barry_as_FLUFL
+
+__all__ = ['a', 'b', 'c']
+__version__ = '0.1'
+__author__ = 'Lucas Paiva e Sergio Mendonca'
+
 from cadastrocarro import CadastroCarro
 import sys
 
