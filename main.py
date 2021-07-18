@@ -13,6 +13,7 @@ while quantCarros:
     c = CadastroCarro.incluir()
     carros.append(c)
     quantCarros -= quantCarros
+
 # -----------------------------------
 
 carroVencedor = ''
