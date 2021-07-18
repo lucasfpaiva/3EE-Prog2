@@ -12,7 +12,6 @@ carros.append(Carro(0, 0, 'McLaren', '2001', 10, 50, pil2, 'Hidráulica'))
 carros.append(Carro(0, 0, 'Mustang', '1900', 10, 56, pil3, 'Hidráulica'))
 # -----------------------------------
 
-
 carroVencedor = ''
 menor_Tempo = 0
 
@@ -33,4 +32,9 @@ for carroAtual in carros:
         menor_Tempo = contador
         carroVencedor = f'{carroAtual.marca} {carroAtual.modelo}'
 
-print(f'O carro vencedor foi: {carroVencedor}')
+st = f'O carro vencedor foi: {carroVencedor}.\n'
+st += f'Distância percorrida: {distPercorrida:.2f} km.\n'
+st += f'Tempo: {menor_Tempo:.2f} h.\n'
+st += f'Velocidade média: {distPercorrida/menor_Tempo:.2f} km/h.'
+
+print(st)
