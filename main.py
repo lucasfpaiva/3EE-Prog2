@@ -1,15 +1,18 @@
-from piloto import Piloto
-from carro import Carro
-
+from cadastrocarro import CadastroCarro
+import sys
 
 # ----------------------------------
-pil1 = Piloto('Jose', 21, 0.87)
-pil2 = Piloto('Joaquim', 35, 0.92)
-pil3 = Piloto('Henrique', 32, 0.95)
 carros = []
-carros.append(Carro(0, 0, 'Porsche', '1954', 10, 50, pil1, 'Hidráulica'))
-carros.append(Carro(0, 0, 'McLaren', '2001', 10, 50, pil2, 'Hidráulica'))
-carros.append(Carro(0, 0, 'Mustang', '1900', 10, 56, pil3, 'Hidráulica'))
+
+sys.stdin = open('data.txt', 'r')
+
+quantCarros = int(input('Informe a quantidade de carros: '))
+print(f'Vamos cadastrar {quantCarros} carros e seus pilotos:\n')
+
+while quantCarros:
+    c = CadastroCarro.incluir()
+    carros.append(c)
+    quantCarros -= quantCarros
 # -----------------------------------
 
 carroVencedor = ''
@@ -26,13 +29,13 @@ for carroAtual in carros:
 
     if menor_Tempo == 0:
         menor_Tempo = contador
-        carroVencedor = f'{carroAtual.marca} {carroAtual.modelo}'
 
     if contador < menor_Tempo:
         menor_Tempo = contador
-        carroVencedor = f'{carroAtual.marca} {carroAtual.modelo}'
 
-st = f'O carro vencedor foi: {carroVencedor}.\n'
+st = f'\n\nVencedor: {carroAtual.marca}\n'
+st += f'Modelo: {carroAtual.modelo}\n'
+st += f'Pilotado por {carroAtual.piloto.nome}\n'
 st += f'Distância percorrida: {distPercorrida:.2f} km.\n'
 st += f'Tempo: {menor_Tempo:.2f} h.\n'
 st += f'Velocidade média: {distPercorrida/menor_Tempo:.2f} km/h.'
