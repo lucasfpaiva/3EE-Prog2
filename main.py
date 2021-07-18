@@ -5,7 +5,8 @@
 
 Este programa simula a corrida de carros ou motos, com módulos para inserir,
 excluir, consultar e atualizar dados sobre Carros, Motos e Pilotos, com o
-objetivo de simular comportamento pertencente ao tema Mecânica, da disciplina Mecânica e Resistência de Materiais.
+objetivo de simular comportamento pertencente ao tema Mecânica, da disciplina 
+Mecânica e Resistência de Materiais.
 """
 
 from __future__ import barry_as_FLUFL
