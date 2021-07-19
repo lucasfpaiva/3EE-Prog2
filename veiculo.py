@@ -1,4 +1,5 @@
 from piloto import Piloto
+from abc import ABC, abstractmethod
 
 
 class Veiculo:
@@ -73,8 +74,9 @@ class Veiculo:
     def partida(self):
         self.__on = True
 
-    def acelerar(self):
-        self.veloc += self.aceleracao*self.piloto.proficiencia
+    def acelerar(self) -> float:
+        self.veloc += float(self.aceleracao) * float(self.piloto.proficiencia)
+        return float(self.veloc)
 
         if self.veloc > self.velocMax:
             self.veloc = self.velocMax
@@ -84,3 +86,7 @@ class Veiculo:
             self.veloc = 0
         else:
             self.veloc -= self.aceleracao*10
+
+    @abstractmethod
+    def ligar(self):
+        pass

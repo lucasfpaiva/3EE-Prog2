@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from veiculo import Veiculo
 from piloto import Piloto
 
@@ -17,3 +18,7 @@ class Moto(Veiculo):
 
     def acelerar(self):
         return super().acelerar() + 5
+
+    @abstractmethod
+    def ligar(self):
+        self.on = True

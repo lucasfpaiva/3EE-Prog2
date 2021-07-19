@@ -58,7 +58,7 @@ class CadastroCarro(Carro):
                         f'Carro {marca} encontrado em nossos registros.\nVamos atualizar os dados: ')
                     marca = input('Marca: ')
                     modelo = input('Modelo: ')
-                    on = bool(input('Ligado/Desligado: '))
+                    on = super().ligar()
                     vel = float(input('Velocidade: '))
                     aceleracao = float(input('Aceleração: '))
                     velocMax = float(input('Velocidade Máxima: '))

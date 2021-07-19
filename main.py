@@ -21,7 +21,7 @@ import sys
 # ----------------------------------
 carros = []
 
-sys.stdin = open('data.txt', 'r')
+sys.stdin = open('digitacao.txt', 'r')
 
 quantCarros = int(input('Informe a quantidade de carros: '))
 print(f'Vamos cadastrar {quantCarros} carros e seus pilotos:\n')

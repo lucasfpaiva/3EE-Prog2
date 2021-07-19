@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from veiculo import Veiculo
 from piloto import Piloto
 
@@ -16,4 +17,8 @@ class Carro(Veiculo):
         self.__tpDirecao = valor
 
     def acelerar(self):
-        return super().acelerar() + 10
+        return float(super().acelerar()) + 10.0
+
+    @abstractmethod
+    def ligar(self):
+        self.on = True
