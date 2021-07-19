@@ -14,3 +14,6 @@ class Moto(Veiculo):
     @tpGuidao.setter
     def tpGuidao(self, valor):
         self.__tpGuidao = valor
+
+    def acelerar(self):
+        return super().acelerar() + 5

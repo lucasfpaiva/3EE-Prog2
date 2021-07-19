@@ -16,4 +16,4 @@ class Carro(Veiculo):
         self.__tpDirecao = valor
 
     def acelerar(self):
-        return super().acelerar()
+        return super().acelerar() + 10
